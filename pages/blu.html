@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>صدور رسید کارت به کارت</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --bg-color: #1a1e29;
+            --text-main: #ffffff;
+            --text-muted: #858e9e;
+            --accent-green: #02bd92;
+            --line-color: #232a38;
+            --btn-bg: #242b38;
+            --btn-text: #8faecc;
+            --help-bg: #5a94dd;
+            --form-input-bg: #1e1c24;
+            --form-border: #2e2b38;
+            --form-border-focus: #4e4a5e;
+            --form-btn: #2563eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent !important;
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+            outline: none !important;
+        }
+
+        ::selection {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            width: 100%;
+            height: 100dvh;
+            max-width: 440px;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* =========================================================
+           صفحه فرم (FORM VIEW) - فاصله ثابت بین فیلدها بدون کشیدگی
+           ========================================================= */
+        #form-view {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 20px 20px 24px 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            justify-content: space-between;
+        }
+
+        #form-view::-webkit-scrollbar {
+            display: none;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .form-header h2 {
+            font-size: 20px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .form-header p {
+            font-size: 13px;
+            color: #8E919A;
+        }
+
+        #transaction-form {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        /* فاصله‌گذاری ثابت و جمع‌وجور برای فیلدها */
+        .form-fields-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            flex-grow: 0; /* جلوگیری از کشیده شدن عمودی فیلدها */
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            color: #CCCCCC;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            background-color: var(--form-input-bg);
+            border: 1px solid var(--form-border);
+            border-radius: 11px;
+            padding: 11px 14px;
+            color: #ffffff;
+            font-size: 14.5px;
+            transition: border-color 0.2s ease;
+            width: 100%;
+            outline: none !important;
+            box-shadow: none !important;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--form-border-focus) !important;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0 1000px var(--form-input-bg) inset !important;
+            box-shadow: 0 0 0 1000px var(--form-input-bg) inset !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .input-with-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-btn input {
+            padding-left: 48px;
+        }
+
+        .dice-btn {
+            position: absolute;
+            left: 6px;
+            background-color: var(--form-border);
+            border: 1px solid #3A3745;
+            color: #a0aec0;
+            border-radius: 8px;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .dice-btn:hover {
+            background-color: #3b3749;
+            color: #ffffff;
+        }
+
+        .submit-btn {
+            background-color: var(--form-btn);
+            border: none;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 13px;
+            font-size: 15.5px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: auto; /* قرارگیری در پایین فرم بدون کشیدن فیلدها */
+            transition: all 0.2s ease;
+            width: 100%;
+            flex-shrink: 0;
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .submit-btn:disabled {
+            background-color: #1e3a8a;
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+
+        /* =========================================================
+           صفحه رسید (RECEIPT VIEW) - سطرها فشرده و بدون کشیدگی
+           ========================================================= */
+        #receipt-view {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            padding: 12px 18px 20px 18px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #receipt-view::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 2px;
+            flex-shrink: 0;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            flex-shrink: 0;
+            outline: none !important;
+        }
+
+        .back-btn svg {
+            stroke: #4289df;
+            width: 25px;
+            height: 25px;
+        }
+
+        .header-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .help-btn {
+            background-color: var(--help-bg);
+            color: var(--bg-color);
+            width: 29px;
+            height: 29px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 78px;
+            height: 78px;
+            background-color: #242a37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            flex-shrink: 0;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .avatar-default-logo {
+            width: 50%;
+            height: 50%;
+            fill: #556274;
+        }
+
+        .profile-name {
+            font-size: 17.5px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        .profile-card {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            margin-bottom: 14px;
+            direction: ltr;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .amount-section {
+            text-align: center;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+
+        .amount {
+            font-size: 29px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .amount-label {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .status-btn {
+            background-color: var(--accent-green);
+            color: #07231a;
+            border: none;
+            border-radius: 12px;
+            padding: 7px 20px;
+            font-size: 14.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto 15px auto;
+            cursor: default;
+            flex-shrink: 0;
+            width: fit-content;
+        }
+
+        .status-icon {
+            background-color: #07231a;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .dotted-sep {
+            border-bottom: 2px dotted #363e4f;
+            margin: 0 4px 10px 4px;
+            flex-shrink: 0;
+            opacity: 0.85;
+        }
+
+        /* بخش جزئیات رسید: ابعاد ثابت بدون پخش شدن در صفحه */
+        .details-list {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 0; /* جلوگیری از کشیده شدن و پخش شدن سطرها */
+            flex-shrink: 0;
+            width: 100%;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10.5px 4px; /* پدینگ ثابت و استاندارد */
+            border-bottom: 1px solid var(--line-color);
+            flex-shrink: 0;
+            gap: 8px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+        
+        .ltr-text {
+            direction: ltr;
+            letter-spacing: 0.5px;
+        }
+
+        /* دو دکمه پایین با فاصله آزاد از باکس بالا */
+        .bottom-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: auto; /* هدایت فضای اضافه صفحه به بالای این دو دکمه */
+            padding-top: 20px;
+            padding-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .action-btn {
+            flex: 1;
+            background-color: var(--btn-bg);
+            border: none;
+            border-radius: 14px;
+            padding: 12px 6px;
+            color: var(--btn-text);
+            font-size: 13.5px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            min-height: 58px;
+            justify-content: center;
+            white-space: nowrap;
+            outline: none !important;
+        }
+
+        .action-btn svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--btn-text);
+            stroke-width: 1.8;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        .home-indicator {
+            width: 120px;
+            height: 4px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.6;
+            flex-shrink: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- صفحه اول: فرم ورود اطلاعات -->
+        <div id="form-view">
+            <div class="form-header">
+                <h2>اطلاعات تراکنش</h2>
+                <p>لطفاً مشخصات را جهت ساخت رسید وارد کنید</p>
+            </div>
+
+            <form id="transaction-form" onsubmit="handleFormSubmit(event)" autocomplete="off">
+                <div class="form-fields-wrapper">
+                    <div class="form-group">
+                        <label>شماره کارت مقصد</label>
+                        <input type="text" id="input-dest-card" maxlength="19" required dir="ltr" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label>نام دارنده کارت مقصد</label>
+                        <input type="text" id="input-dest-name" required autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label>مبلغ (ریال)</label>
+                        <input type="text" id="input-amount" required dir="ltr" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label>شماره کارت مبدأ</label>
+                        <div class="input-with-btn">
+                            <input type="text" id="input-src-card" maxlength="19" required dir="ltr" autocomplete="off">
+                            <button type="button" class="dice-btn" id="dice-btn" title="تولید شماره کارت تصادفی">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7c.83 0 1.5.67 1.5 1.5S7.83 10 7 10s-1.5-.67-1.5-1.5S6.17 7 7 7zm0 10c-.83 0-1.5-.67-1.5-1.5S6.17 14 7 14s1.5.67 1.5 1.5S7.83 17 7 17zm5-5c-.83 0-1.5-.67-1.5-1.5S11.17 9 12 9s1.5.67 1.5 1.5S12.83 12 12 12zm5 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-10c-.83 0-1.5-.67-1.5-1.5S16.17 7 17 7s1.5.67 1.5 1.5S17.83 10 17 10z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>نام دارنده شماره کارت مبدأ</label>
+                        <input type="text" id="input-src-name" required autocomplete="off">
+                    </div>
+                </div>
+
+                <button type="submit" id="submit-btn" class="submit-btn">تأیید و صدور رسید</button>
+            </form>
+            
+            <div class="home-indicator"></div>
+        </div>
+
+        <!-- صفحه دوم: رسید نهایی -->
+        <div id="receipt-view">
+            <div class="header">
+                <button class="back-btn" onclick="showForm()" title="بازگشت">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+                <div class="header-title">رسید</div>
+                <div class="help-btn">?</div>
+            </div>
+
+            <div class="profile-section">
+                <div class="avatar-wrapper">
+                    <img src="images/blu.png" alt="آواتار" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <svg class="avatar-default-logo" style="display:none;" viewBox="0 0 24 24">
+                        <path d="M7 4v16h6a6 6 0 0 0 6-6c0-3.3-2.7-6-6-6h-3V4H7zm3 9h3a3 3 0 0 1 3 3 3 3 0 0 1-3 3h-3v-6z"/>
+                    </svg>
+                </div>
+                <div class="profile-name" id="display-name">---</div>
+                <div class="profile-card" id="display-card">---</div>
+            </div>
+
+            <div class="amount-section">
+                <div class="amount" id="display-amount">---</div>
+                <div class="amount-label">مبلغ انتقال</div>
+            </div>
+
+            <button class="status-btn" type="button">
+                <span class="status-icon">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#02bd92" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </span>
+                <span>انتقال موفق</span>
+            </button>
+
+            <div class="dotted-sep"></div>
+
+            <!-- باکس جزئیات با سایز ثابت و فشرده -->
+            <div class="details-list">
+                <div class="detail-row">
+                    <div class="detail-label">زمان</div>
+                    <div class="detail-value" id="display-date">---</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">انتقال دهنده</div>
+                    <div class="detail-value" id="display-src-name">---</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">روش انتقال</div>
+                    <div class="detail-value">کارت به کارت</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">کارت مبدا</div>
+                    <div class="detail-value ltr-text" id="display-src-card">---</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">شماره مرجع</div>
+                    <div class="detail-value ltr-text" id="display-ref-num">---</div>
+                </div>
+            </div>
+
+            <!-- دکمه‌ها در پایین صفحه قرار می‌گیرند و فضای اضافه بالای آن‌ها خواهد بود -->
+            <div class="bottom-actions">
+                <button class="action-btn" type="button">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
+                    <span>اشتراک‌گذاری</span>
+                </button>
+                <button class="action-btn" type="button">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>ذخیره در گالری</span>
+                </button>
+            </div>
+
+            <div class="home-indicator"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function toPersianDigits(str) {
+            if (!str) return '';
+            const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+            return str.toString().replace(/\d/g, x => farsiDigits[x]);
+        }
+
+        function toEnglishDigits(str) {
+            if (!str) return '';
+            return str.toString().replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+        }
+
+        function cleanCardNumber(str) {
+            if (!str) return '';
+            let englishStr = toEnglishDigits(str);
+            return englishStr.replace(/[\s\-]/g, '').replace(/\D/g, '');
+        }
+
+        document.getElementById('input-amount').addEventListener('input', function (e) {
+            let cleanDigits = toEnglishDigits(e.target.value).replace(/\D/g, '');
+            if (cleanDigits) {
+                let formatted = cleanDigits.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                e.target.value = toPersianDigits(formatted);
+            } else {
+                e.target.value = '';
+            }
+        });
+
+        ['input-dest-card', 'input-src-card'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function(e) {
+                let val = toEnglishDigits(e.target.value).replace(/\D/g, '').substring(0, 16);
+                let formatted = val.match(/.{1,4}/g)?.join(' ') || '';
+                e.target.value = toPersianDigits(formatted);
+            });
+        });
+
+        document.getElementById('dice-btn').addEventListener('click', function () {
+            let randomCard = '6037';
+            for (let i = 0; i < 12; i++) {
+                randomCard += Math.floor(Math.random() * 10);
+            }
+            let formatted = randomCard.match(/.{1,4}/g).join(' ');
+            document.getElementById('input-src-card').value = toPersianDigits(formatted);
+        });
+
+        function getCurrentPersianDateTime() {
+            const now = new Date();
+            const formatterDate = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+            const dateParts = formatterDate.formatToParts(now);
+            
+            const weekday = dateParts.find(p => p.type === 'weekday').value;
+            const day = dateParts.find(p => p.type === 'day').value;
+            const month = dateParts.find(p => p.type === 'month').value;
+            const year = dateParts.find(p => p.type === 'year').value;
+
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+
+            return toPersianDigits(`${hours}:${minutes} ${weekday}، ${day} ${month} ${year}`);
+        }
+
+        function generateRandomNumber(length) {
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += Math.floor(Math.random() * 10);
+            }
+            return toPersianDigits(result);
+        }
+
+        function maskCardNumber(cardStr) {
+            let clean = cleanCardNumber(cardStr);
+            if (clean.length >= 10) {
+                let p1 = clean.substring(0, 4);
+                let p2 = clean.substring(4, 6);
+                let p3 = clean.substring(clean.length - 4);
+                return `${toPersianDigits(p1)}  ${toPersianDigits(p2)}** **** ${toPersianDigits(p3)}`;
+            }
+            return toPersianDigits(clean);
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'درحال ساخت...';
+
+            setTimeout(() => {
+                const destName = document.getElementById('input-dest-name').value;
+                const destCard = cleanCardNumber(document.getElementById('input-dest-card').value);
+                const amount = document.getElementById('input-amount').value;
+                const srcCard = cleanCardNumber(document.getElementById('input-src-card').value);
+                const srcName = document.getElementById('input-src-name').value;
+
+                document.getElementById('display-name').innerText = destName;
+                document.getElementById('display-card').innerText = toPersianDigits(destCard.match(/.{1,4}/g)?.join('  ') || destCard);
+                document.getElementById('display-amount').innerText = `${amount} ریال`;
+                document.getElementById('display-date').innerText = getCurrentPersianDateTime();
+                document.getElementById('display-src-name').innerText = srcName;
+                document.getElementById('display-src-card').innerText = maskCardNumber(srcCard);
+                document.getElementById('display-ref-num').innerText = generateRandomNumber(12);
+
+                document.getElementById('form-view').style.display = 'none';
+                document.getElementById('receipt-view').style.display = 'flex';
+                
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'تأیید و صدور رسید';
+            }, 600);
+        }
+
+        function showForm() {
+            document.getElementById('receipt-view').style.display = 'none';
+            document.getElementById('form-view').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
