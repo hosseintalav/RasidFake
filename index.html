@@ -109,15 +109,6 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
         }
 
-        .service-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
         .service-card:hover {
             transform: translateY(-3px);
             border-color: rgba(255, 255, 255, 0.15);
@@ -190,7 +181,10 @@
         }
 
         .footer-motto {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
             margin-top: 24px;
         }
 
@@ -201,16 +195,40 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 8px 18px;
-            border-radius: 30px;
         }
 
         .motto-text svg {
             width: 16px;
             height: 16px;
             fill: #38bdf8;
+        }
+
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #229ED9;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 3px 10px rgba(34, 158, 217, 0.35);
+        }
+
+        .telegram-link:hover {
+            transform: translateY(-2px) scale(1.08);
+            box-shadow: 0 5px 14px rgba(34, 158, 217, 0.55);
+        }
+
+        .telegram-link:active {
+            transform: translateY(0) scale(0.96);
+        }
+
+        .telegram-link svg {
+            width: 17px;
+            height: 17px;
+            fill: #ffffff;
         }
     </style>
 </head>
@@ -235,7 +253,7 @@
                     </div>
                     <div class="text-content">
                         <span class="title">رسید بلو بانک</span>
-                        <span class="desc">قالب دقیق رسید انتقال بلو (blu)</span>
+                        <span class="desc">قالب دقیق رسید انتقال بلو </span>
                     </div>
                 </div>
                 <div class="arrow-icon">
@@ -267,12 +285,18 @@
         </div>
     </div>
 
-    <!-- شعار همیشگی -->
+    <!-- شعار همیشگی + آیکون تلگرام کوچک بلافاصله زیرش -->
     <div class="footer-motto">
         <div class="motto-text">
-            <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <span>شعار ما همیشه رایگان بودنه.</span>
+           
+            <span>شعار ما همیشه رایگان بودنه</span>
         </div>
+
+        <a href="https://t.me/w8i_7" target="_blank" rel="noopener noreferrer" class="telegram-link" title="ارتباط در تلگرام">
+            <svg viewBox="0 0 24 24">
+                <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+            </svg>
+        </a>
     </div>
 
 </body>
