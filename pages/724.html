@@ -39,29 +39,30 @@
             box-shadow: 0 0 35px rgba(0, 0, 0, 0.85);
         }
 
-        /* صفحه فرم */
+        /* صفحه فرم - بدون اسکرول */
         #form-view {
             display: flex;
             flex-direction: column;
             height: 100%;
-            padding: 16px 20px 22px 20px;
-            overflow-y: auto;
-            justify-content: space-between;
+            padding: 16px 20px 20px 20px;
+            overflow: hidden;
+            justify-content: flex-start;
         }
 
         .form-top-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            flex-shrink: 0;
         }
 
         .back-home-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 12px;
             background: #1e1c24;
             color: #8E919A;
@@ -76,31 +77,37 @@
             border-color: #2563EB;
         }
 
+        .back-home-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+
         .form-header {
             text-align: center;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            flex-shrink: 0;
         }
 
         .form-header h2 {
-            font-size: 19px;
+            font-size: 21px;
             color: #ffffff;
             margin-bottom: 4px;
         }
 
         .form-header p {
-            font-size: 12.5px;
+            font-size: 13.5px;
             color: #8E919A;
         }
 
         .form-group {
-            margin-bottom: 11px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }
 
         .form-group label {
-            font-size: 12.5px;
+            font-size: 13.5px;
             color: #CCCCCC;
             font-weight: 500;
         }
@@ -109,9 +116,9 @@
             background-color: #1E1C24;
             border: 1px solid #282630;
             border-radius: 12px;
-            padding: 11px 13px;
+            padding: 11px 14px;
             color: #ffffff;
-            font-size: 13.5px;
+            font-size: 14.5px;
             transition: all 0.2s ease;
             width: 100%;
         }
@@ -128,7 +135,7 @@
         }
 
         .input-with-btn input {
-            padding-left: 48px;
+            padding-left: 52px;
         }
 
         .dice-btn {
@@ -138,13 +145,18 @@
             border: 1px solid #3A3745;
             color: #3B82F6;
             border-radius: 8px;
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
+        }
+
+        .dice-btn svg {
+            width: 22px;
+            height: 22px;
         }
 
         .submit-btn {
@@ -153,15 +165,15 @@
             color: #ffffff;
             border-radius: 12px;
             padding: 13px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 6px;
+            margin-top: 8px;
             transition: all 0.2s ease;
             width: 100%;
         }
 
-        /* کانتینر نمایش رسید تمام صفحه */
+        /* نمای رسید */
         #receipt-wrapper {
             display: none;
             flex-direction: column;
@@ -183,42 +195,40 @@
             padding: 8px;
         }
 
-        /* کادر عکس‌برداری رسید: ابعاد 450x800 به همراه بوردر نمایشی در سایت */
+        /* کادر با نسبت دقیق 9:20 (450x1000) */
         #receipt-capture-area {
             width: 450px;
-            height: 800px;
+            height: 1000px;
             min-width: 450px;
-            min-height: 800px;
+            min-height: 1000px;
             background-color: #141318;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 0 20px 8px 20px;
+            padding: 0 22px 10px 22px;
             box-sizing: border-box;
             overflow: hidden;
             transform-origin: center center;
 
-            /* بوردر و افکت لبه‌ها فقط برای نمایش در سایت */
             border: 2px solid #2d2a38;
             border-radius: 26px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
 
-        /* نوار وضعیت گوشی (Status Bar) */
+        /* نوار وضعیت گوشی */
         .phone-status-bar {
             height: 42px;
             padding: 0 4px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #ffffff;
+            color: #d6d6d6;
             direction: rtl;
             user-select: none;
             flex-shrink: 0;
         }
 
         .status-time {
-            font-size: 14.5px;
+            font-size: 15px;
             letter-spacing: 0.5px;
             color: #ffffff;
             font-weight: 600;
@@ -229,11 +239,11 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            height: 19px;
+            height: 21px;
         }
 
         .status-icons-img {
-            height: 19px;
+            height: 21px;
             width: auto;
             object-fit: contain;
             display: block;
@@ -244,13 +254,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 4px 0 10px 0;
+            padding: 6px 0 30px 0;
             position: relative;
             flex-shrink: 0;
         }
 
         .header h1 {
-            font-size: 17.5px;
+            font-size: 20px;
             font-weight: 700;
             color: #ffffff;
             position: absolute;
@@ -262,40 +272,38 @@
             background: none;
             border: none;
             color: #ffffff;
-            font-size: 22px;
+            font-size: 26px;
             cursor: pointer;
             display: flex;
             align-items: center;
         }
 
-        .content {
-            flex: 1;
-            min-height: 0;
-            padding: 0;
+        /* بخش بالای باکس */
+        .top-fixed {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            flex-shrink: 0;
         }
 
         .success-badge {
             background-color: #35A87B;
             color: #ffffff;
-            padding: 6px 18px;
+            padding: 8px 22px;
             border-radius: 12px;
-            font-size: 14.5px;
+            font-size: 16px;
             font-weight: 700;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
-            margin: 0 auto 8px auto;
+            gap: 8px;
+            margin: 0 auto;
             width: fit-content;
             flex-shrink: 0;
         }
 
         .check-circle {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             background-color: #ffffff;
             border-radius: 50%;
             display: flex;
@@ -304,31 +312,50 @@
         }
 
         .check-circle svg {
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
             fill: #35A87B;
         }
 
-        .amount-title {
-            font-size: 18.5px;
+        /* فاصله بالا و پایین برای وسط‌چین کردن عنوان نام و مبلغ */
+        .title-spacer-top {
+            flex-grow: 1;
+            min-height: 10px;
+        }
+
+        .title-spacer-bottom {
+            flex-grow: 1;
+            min-height: 10px;
+        }
+
+                .amount-title {
+            font-size: 21px;
             font-weight: 700;
             color: #ffffff;
             text-align: center;
-            margin-bottom: 10px;
             flex-shrink: 0;
+            margin-top: -50px;
         }
 
+        /* فاصله بالا برای وسط‌چین کردن باکس details-card */
+        .spacer-top {
+            flex-grow: 1;
+            min-height: 10px;
+        }
+
+        /* کارت مشخصات - این باکس باید وسط باشه */
         .details-card {
             background-color: #1E1C24;
-            border-radius: 18px;
-            padding: 6px 18px 14px 18px;
+            border-radius: 20px;
+            padding: 10px 20px 16px 20px;
+            flex-shrink: 0;
         }
 
         .detail-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 9px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #282630;
         }
 
@@ -339,13 +366,13 @@
 
         .detail-label {
             color: #8E919A;
-            font-size: 13.5px;
+            font-size: 15px;
         }
 
         .detail-value {
             color: #ffffff;
             font-weight: 500;
-            font-size: 14.5px;
+            font-size: 16px;
             direction: ltr;
         }
 
@@ -357,26 +384,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0 0 0;
-            margin-top: 4px;
+            padding: 14px 0 4px 0;
+            margin-top: 6px;
             border-top: 1px solid #282630;
         }
 
         .branding-right {
             display: flex;
             align-items: center;
-            gap: 7px;
+            gap: 8px;
         }
 
         .brand-logo-img {
-            height: 38px;
+            height: 44px;
             width: auto;
             object-fit: contain;
             display: block;
         }
 
         .branding-right span {
-            font-size: 11px;
+            font-size: 13px;
             color: #8E919A;
         }
 
@@ -386,38 +413,45 @@
         }
 
         .branding-url {
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 800;
             color: #E51C74;
             letter-spacing: 0.5px;
         }
 
         .branding-sub {
-            font-size: 8px;
+            font-size: 9px;
             color: #5D6069;
-            margin-top: 1px;
+            margin-top: 2px;
         }
 
+        /* فاصله پایین برای وسط‌چین کردن باکس details-card */
+        .spacer-bottom {
+            flex-grow: 1;
+            min-height: 10px;
+        }
+
+        /* بنر گردونه شانس */
         .lucky-banner {
             background-color: #1A2338;
-            border-radius: 14px;
-            padding: 8px 12px;
+            border-radius: 16px;
+            padding: 12px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
+            margin-bottom: 12px;
             flex-shrink: 0;
         }
 
         .lucky-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .lucky-icon-wrap {
-            width: 32px;
-            height: 32px;
+            width: 38px;
+            height: 38px;
             background: #ffffff;
             border-radius: 50%;
             display: flex;
@@ -427,8 +461,13 @@
             border: 2px solid #3366FF;
         }
 
+        .lucky-icon-wrap svg {
+            width: 40px;
+            height: 40px;
+        }
+
         .lucky-title {
-            font-size: 12.5px;
+            font-size: 14.5px;
             font-weight: 600;
             color: #ffffff;
         }
@@ -436,22 +475,23 @@
         .lucky-left {
             display: flex;
             align-items: center;
-            gap: 3px;
-            font-size: 12px;
+            gap: 4px;
+            font-size: 14px;
             color: #40A9FF;
         }
 
         .lucky-left svg {
-            width: 13px;
-            height: 13px;
+            width: 15px;
+            height: 15px;
             fill: #40A9FF;
         }
 
+        /* نوار پایین */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding: 8px 12px 2px 12px;
+            padding: 10px 12px 4px 12px;
             background-color: #141318;
             flex-shrink: 0;
         }
@@ -460,30 +500,29 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             background: none;
             border: none;
             color: #ffffff;
-            font-size: 12px;
+            font-size: 13.5px;
             font-weight: 500;
             padding: 3px 6px;
             pointer-events: none;
         }
 
         .nav-item svg {
-            width: 23px;
-            height: 23px;
+            width: 26px;
+            height: 26px;
             fill: #36507D;
         }
 
-        /* خط نوار هوم فقط برای رسید */
         .home-indicator {
             width: 134px;
             height: 4.5px;
             background-color: #ffffff;
             opacity: 0.45;
             border-radius: 3px;
-            margin: 6px auto 2px auto;
+            margin: 8px auto 2px auto;
             flex-shrink: 0;
         }
 
@@ -504,8 +543,8 @@
             color: #ffffff;
             border: none;
             border-radius: 12px;
-            padding: 13px;
-            font-size: 15px;
+            padding: 14px;
+            font-size: 16px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -521,8 +560,8 @@
         }
 
         .blue-save-btn svg {
-            width: 19px;
-            height: 19px;
+            width: 21px;
+            height: 21px;
             stroke: currentColor;
             fill: none;
             stroke-width: 2.2;
@@ -533,75 +572,73 @@
 
     <div class="phone-container">
 
-        <!-- صفحه فرم -->
+        <!-- صفحه فرم بدون هیچ متن Placeholder و بدون اسکرول -->
         <div id="form-view">
-            <div>
-                <div class="form-top-bar">
-                    <a href="../index.html" class="back-home-btn" title="بازگشت به انتخاب اپلیکیشن">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </a>
-                    <div style="width: 38px;"></div>
-                </div>
-
-                <div class="form-header">
-                    <h2>صدور رسید ۷۲۴</h2>
-                    <p>مشخصات تراکنش را جهت دریافت تصویر وارد کنید</p>
-                </div>
-
-                <form id="transaction-form" onsubmit="handleFormSubmit(event)" autocomplete="off">
-                    <div class="form-group">
-                        <label>شماره کارت مقصد</label>
-                        <input type="text" id="input-dest-card" maxlength="19" required dir="ltr" placeholder="---- ---- ---- ----">
-                    </div>
-
-                    <div class="form-group">
-                        <label>نام دارنده کارت مقصد</label>
-                        <input type="text" id="input-dest-name" required placeholder="مثال: علی محمدی">
-                    </div>
-
-                    <div class="form-group">
-                        <label>مبلغ (ریال)</label>
-                        <input type="text" id="input-amount" required dir="ltr" placeholder="۵۰,۰۰۰">
-                    </div>
-
-                    <div class="form-group">
-                        <label>شماره کارت مبدأ</label>
-                        <div class="input-with-btn">
-                            <input type="text" id="input-src-card" maxlength="19" required dir="ltr" placeholder="6037 ...">
-                            <button type="button" class="dice-btn" id="dice-btn" title="تولید کارت تصادفی">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7c.83 0 1.5.67 1.5 1.5S7.83 10 7 10s-1.5-.67-1.5-1.5S6.17 7 7 7zm0 10c-.83 0-1.5-.67-1.5-1.5S6.17 14 7 14s1.5.67 1.5 1.5S7.83 17 7 17zm5-5c-.83 0-1.5-.67-1.5-1.5S11.17 9 12 9s1.5.67 1.5 1.5S12.83 12 12 12zm5 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-10c-.83 0-1.5-.67-1.5-1.5S16.17 7 17 7s1.5.67 1.5 1.5S17.83 10 17 10z"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>نام دارنده شماره کارت مبدأ</label>
-                        <input type="text" id="input-src-name" required placeholder="نام فرستنده">
-                    </div>
-
-                    <button type="submit" id="submit-btn" class="submit-btn">تأیید و صدور رسید</button>
-                </form>
+            <div class="form-top-bar">
+                <a href="../index.html" class="back-home-btn" title="بازگشت به انتخاب اپلیکیشن">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+                <div style="width: 40px;"></div>
             </div>
+
+            <div class="form-header">
+                <h2>صدور رسید ۷۲۴</h2>
+                <p>مشخصات تراکنش را جهت دریافت تصویر وارد کنید</p>
+            </div>
+
+            <form id="transaction-form" onsubmit="handleFormSubmit(event)" autocomplete="off">
+                <div class="form-group">
+                    <label>شماره کارت مقصد</label>
+                    <input type="text" id="input-dest-card" maxlength="19" required dir="ltr">
+                </div>
+
+                <div class="form-group">
+                    <label>نام دارنده کارت مقصد</label>
+                    <input type="text" id="input-dest-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>مبلغ (ریال)</label>
+                    <input type="text" id="input-amount" required dir="ltr">
+                </div>
+
+                <div class="form-group">
+                    <label>شماره کارت مبدأ</label>
+                    <div class="input-with-btn">
+                        <input type="text" id="input-src-card" maxlength="19" required dir="ltr">
+                        <button type="button" class="dice-btn" id="dice-btn" title="تولید کارت تصادفی">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7c.83 0 1.5.67 1.5 1.5S7.83 10 7 10s-1.5-.67-1.5-1.5S6.17 7 7 7zm0 10c-.83 0-1.5-.67-1.5-1.5S6.17 14 7 14s1.5.67 1.5 1.5S7.83 17 7 17zm5-5c-.83 0-1.5-.67-1.5-1.5S11.17 9 12 9s1.5.67 1.5 1.5S12.83 12 12 12zm5 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-10c-.83 0-1.5-.67-1.5-1.5S16.17 7 17 7s1.5.67 1.5 1.5S17.83 10 17 10z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>نام دارنده شماره کارت مبدأ</label>
+                    <input type="text" id="input-src-name" required>
+                </div>
+
+                <button type="submit" id="submit-btn" class="submit-btn">تأیید و صدور رسید</button>
+            </form>
         </div>
 
         <!-- نمای رسید و دانلود -->
         <div id="receipt-wrapper">
             
             <div class="preview-outer" id="preview-outer">
-                <!-- بخش با ابعاد 450x800 به همراه بوردر نمایشی در سایت -->
+                <!-- المان رسید 450x1000 (نسبت ۹:۲۰) -->
                 <div id="receipt-capture-area">
 
-                    <!-- نوار وضعیت گوشی (Status Bar) -->
+                    <!-- نوار وضعیت گوشی -->
                     <div class="phone-status-bar">
-                        <span class="status-time" id="status-clock">12:45</span>
+                        <span class="status-time" id="status-clock">00:34</span>
                         <div class="status-icons-wrapper">
                             <img src="../images/status-icons.png" class="status-icons-img" alt="status" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div style="display:none; align-items:center; gap:5px; height:19px;">
+                            <div style="display:none; align-items:center; gap:5px; height:21px;">
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z"/></svg>
                                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M2 22h20V2z"/></svg>
                                 <svg width="18" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17 4h-3V2h-4v2H7v18h10V4z"/></svg>
@@ -613,87 +650,99 @@
                     <div class="header">
                         <button class="close-btn" onclick="showForm()">&#10005;</button>
                         <h1>کارت به کارت</h1>
-                        <div style="width: 22px;"></div>
+                        <div style="width: 26px;"></div>
                     </div>
 
-                    <!-- بدنه رسید -->
-                    <div class="content">
+                    <!-- بج موفقیت -->
+                    <div class="top-fixed">
                         <div class="success-badge">
                             <span>تراکنش موفق</span>
                             <div class="check-circle">
                                 <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="amount-title" id="display-top-title">---</div>
+                    <!-- فاصله بالا برای وسط‌چین کردن عنوان نام و مبلغ -->
+                    <div class="title-spacer-top"></div>
 
-                        <div class="details-card">
-                            <div class="detail-row">
-                                <span class="detail-label">مبلغ</span>
-                                <span class="detail-value" id="display-amount">---</span>
-                            </div>
+                    <!-- عنوان نام و مبلغ - دقیقاً وسط بین بج موفقیت و باکس جزئیات -->
+                    <div class="amount-title" id="display-top-title">---</div>
 
-                            <div class="detail-row">
-                                <span class="detail-label">تاریخ</span>
-                                <span class="detail-value" id="display-date">---</span>
-                            </div>
+                    <!-- فاصله پایین برای وسط‌چین کردن عنوان نام و مبلغ -->
+                    <div class="title-spacer-bottom"></div>
 
-                            <div class="detail-row">
-                                <span class="detail-label">کارت مبدا</span>
-                                <span class="detail-value" id="display-src-card">---</span>
-                            </div>
-
-                            <div class="detail-row">
-                                <span class="detail-label">کارت مقصد</span>
-                                <span class="detail-value" id="display-dest-card">---</span>
-                            </div>
-
-                            <div class="detail-row">
-                                <span class="detail-label">دارنده کارت مقصد</span>
-                                <span class="detail-value rtl" id="display-dest-name">---</span>
-                            </div>
-
-                            <div class="detail-row">
-                                <span class="detail-label">شماره پیگیری</span>
-                                <span class="detail-value" id="display-ref-track">---</span>
-                            </div>
-
-                            <div class="detail-row no-border">
-                                <span class="detail-label">شماره مرجع</span>
-                                <span class="detail-value" id="display-ref-num">---</span>
-                            </div>
-
-                            <div class="branding-section">
-                                <div class="branding-right">
-                                    <img src="../images/724.png" alt="724" class="brand-logo-img" onerror="this.onerror=null; this.src='images/724.png';">
-                                    <span>ساده ترین روش کارت به کارت</span>
-                                </div>
-                                <div class="branding-left">
-                                    <div class="branding-url">WWW.724.IR</div>
-                                    <div class="branding-sub">support724@sep.ir 021-84080</div>
-                                </div>
-                            </div>
+                    <!-- کارت اطلاعات -->
+                    <div class="details-card">
+                        <div class="detail-row">
+                            <span class="detail-label">مبلغ</span>
+                            <span class="detail-value" id="display-amount">---</span>
                         </div>
 
-                        <div class="lucky-banner">
-                            <div class="lucky-right">
-                                <div class="lucky-icon-wrap">
-                                    <svg viewBox="0 0 36 36" width="36" height="36">
-                                        <circle cx="18" cy="18" r="18" fill="#F4B400"/>
-                                        <polygon points="18,4 30,18 18,32 6,18" fill="#4285F4"/>
-                                        <circle cx="18" cy="18" r="5" fill="#FFFFFF"/>
-                                    </svg>
-                                </div>
-                                <span class="lucky-title">۱ جایزه گردونه برای این تراکنش</span>
+                        <div class="detail-row">
+                            <span class="detail-label">تاریخ</span>
+                            <span class="detail-value" id="display-date">---</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">کارت مبدا</span>
+                            <span class="detail-value" id="display-src-card">---</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">کارت مقصد</span>
+                            <span class="detail-value" id="display-dest-card">---</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">دارنده کارت مقصد</span>
+                            <span class="detail-value rtl" id="display-dest-name">---</span>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">شماره پیگیری</span>
+                            <span class="detail-value" id="display-ref-track">---</span>
+                        </div>
+
+                        <div class="detail-row no-border">
+                            <span class="detail-label">شماره مرجع</span>
+                            <span class="detail-value" id="display-ref-num">---</span>
+                        </div>
+
+                        <div class="branding-section">
+                            <div class="branding-right">
+                                <img src="../images/724.png" alt="724" class="brand-logo-img" onerror="this.onerror=null; this.src='images/724.png';">
+                                <span>ساده ترین روش کارت به کارت</span>
                             </div>
-                            <div class="lucky-left">
-                                <span>شانستو امتحان کن!</span>
-                                <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                            <div class="branding-left">
+                                <div class="branding-url">WWW.724.IR</div>
+                                <div class="branding-sub">support724@sep.ir 021-84080</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- نوار دکمه‌های ظاهری فرم رسید -->
+                    <!-- فاصله پایین برای وسط‌چین کردن باکس details-card -->
+                    <div class="spacer-bottom"></div>
+
+                    <!-- بنر گردونه شانس -->
+                    <div class="lucky-banner">
+                        <div class="lucky-right">
+                            <div class="lucky-icon-wrap">
+                                <svg viewBox="0 0 36 36" width="40" height="40">
+                                    <circle cx="18" cy="18" r="18" fill="#F4B400"/>
+                                    <polygon points="18,4 30,18 18,32 6,18" fill="#4285F4"/>
+                                    <circle cx="18" cy="18" r="5" fill="#FFFFFF"/>
+                                </svg>
+                            </div>
+                            <span class="lucky-title">۱ جایزه گردونه برای این تراکنش</span>
+                        </div>
+                        <div class="lucky-left">
+                            <span>شانستو امتحان کن!</span>
+                            <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+                        </div>
+                    </div>
+
+                    <!-- نوار دکمه‌های پایینی رسید -->
                     <div class="bottom-nav">
                         <div class="nav-item">
                             <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
@@ -709,16 +758,16 @@
                         </div>
                     </div>
 
-                    <!-- خط نشانگر هوم فقط برای رسید -->
+                    <!-- خط هوم بار -->
                     <div class="home-indicator"></div>
                 </div>
             </div>
 
-            <!-- فقط این دکمه آبی تصویر را ذخیره می‌کند -->
+            <!-- دکمه شناور ذخیره تصویر -->
             <div class="floating-download-bar">
                 <button class="blue-save-btn" id="btn-save-receipt" onclick="downloadReceiptImage()">
                     <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    <span>ذخیره رسید با کیفیت بالا (PNG)</span>
+                    <span>ذخیره رسید</span>
                 </button>
             </div>
 
@@ -804,7 +853,7 @@
             const container = document.getElementById('preview-outer');
             const target = document.getElementById('receipt-capture-area');
             if (!container || !target) return;
-            const scale = Math.min(container.clientWidth / 450, container.clientHeight / 800);
+            const scale = Math.min(container.clientWidth / 450, container.clientHeight / 1000);
             target.style.transform = `scale(${scale})`;
         }
 
@@ -838,7 +887,7 @@
 
                 submitBtn.disabled = false;
                 submitBtn.innerText = 'تأیید و صدور رسید';
-            }, 300);
+            }, 250);
         }
 
         function showForm() {
@@ -855,7 +904,6 @@
             const receiptNode = document.getElementById('receipt-capture-area');
             const currentTransform = receiptNode.style.transform;
             
-            // موقتاً بوردر و سایه را حذف می‌کنیم تا عکس خروجی خالص 9:16 باشد
             receiptNode.style.transform = 'none';
             receiptNode.style.border = 'none';
             receiptNode.style.borderRadius = '0';
@@ -867,11 +915,11 @@
                 }
 
                 const canvas = await html2canvas(receiptNode, {
-                    scale: 3,
+                    scale: 2.4,
                     width: 450,
-                    height: 800,
+                    height: 1000,
                     windowWidth: 450,
-                    windowHeight: 800,
+                    windowHeight: 1000,
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: '#141318',
@@ -888,7 +936,6 @@
             } catch (err) {
                 alert('خطا در صدور تصویر رسید: ' + err.message);
             } finally {
-                // بازگردانی بوردر و استایل‌های نمایشی در سایت
                 receiptNode.style.transform = currentTransform;
                 receiptNode.style.border = '2px solid #2d2a38';
                 receiptNode.style.borderRadius = '26px';
