@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <title>صدور رسید کارت به کارت ۷۲۴ | رسیدباز</title>
     <link rel="icon" type="image/webp" href="../images/icon-app.webp">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
@@ -15,6 +15,11 @@
             font-family: 'Vazirmatn', sans-serif;
             -webkit-tap-highlight-color: transparent !important;
             outline: none !important;
+        }
+
+        html {
+            background-color: #0b0e14;
+            overscroll-behavior: none;
         }
 
         html, body {
@@ -46,7 +51,8 @@
             height: 100%;
             min-height: 0;
             padding: 14px 20px 14px 20px;
-            overflow: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
             justify-content: flex-start;
         }
 
@@ -675,7 +681,7 @@
                 <div class="glass-group">
                 <div class="form-group">
                     <label>شماره کارت مقصد</label>
-                    <input type="text" id="input-dest-card" maxlength="19" required dir="ltr">
+                    <input type="text" id="input-dest-card" maxlength="19" required dir="ltr" inputmode="numeric">
                 </div>
 
                 <div class="form-group">
@@ -685,13 +691,13 @@
 
                 <div class="form-group">
                     <label>مبلغ (ریال)</label>
-                    <input type="text" id="input-amount" required dir="ltr">
+                    <input type="text" id="input-amount" required dir="ltr" inputmode="numeric">
                 </div>
 
                 <div class="form-group">
                     <label>شماره کارت مبدأ</label>
                     <div class="input-with-btn">
-                        <input type="text" id="input-src-card" maxlength="19" required dir="ltr">
+                        <input type="text" id="input-src-card" maxlength="19" required dir="ltr" inputmode="numeric">
                         <button type="button" class="dice-btn" id="dice-btn" title="تولید کارت تصادفی">
                             <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM7 7c.83 0 1.5.67 1.5 1.5S7.83 10 7 10s-1.5-.67-1.5-1.5S6.17 7 7 7zm0 10c-.83 0-1.5-.67-1.5-1.5S6.17 14 7 14s1.5.67 1.5 1.5S7.83 17 7 17zm5-5c-.83 0-1.5-.67-1.5-1.5S11.17 9 12 9s1.5.67 1.5 1.5S12.83 12 12 12zm5 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm0-10c-.83 0-1.5-.67-1.5-1.5S16.17 7 17 7s1.5.67 1.5 1.5S17.83 10 17 10z"/>
